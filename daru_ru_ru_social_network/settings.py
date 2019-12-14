@@ -25,7 +25,10 @@ SECRET_KEY = 'woy2guf6jdw!hqv1j4!d#0t260%c4**s7w34me_vox3*qb4$h('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'cloud-rgr-262011.appspot.com',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -73,7 +76,7 @@ ROOT_URLCONF = 'daru_ru_ru_social_network.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [],
         # empty list
         'APP_DIRS': True,
         'OPTIONS': {
@@ -96,10 +99,19 @@ WSGI_APPLICATION = 'daru_ru_ru_social_network.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'social_network',
+        'USER': 'postgres',
+        'PASSWORD': '8di43v3LqhcrhcDt',
+        'PORT': '5432',
     }
 }
+
+DATABASES['default']['HOST'] = '/cloudsql/cloud-rgr-262011:europe-west6:cloud-rgr-db'
+if os.getenv('GAE_INSTANCE'):
+    pass
+else:
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 
 # Password validation
@@ -139,6 +151,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
 
 CHAT_WS_SERVER_HOST = 'localhost'
 CHAT_WS_SERVER_PORT = 5002

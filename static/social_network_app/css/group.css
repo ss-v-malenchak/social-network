@@ -1,0 +1,163 @@
+@import url('base.css');
+
+.group-wallpaper {
+    position: relative;
+}
+
+.group-wallpaper img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.group-avatar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: -50px;
+    margin-bottom: -50px;
+}
+
+.group-avatar img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+
+}
+
+.group-text-data {
+    position: static;
+    text-align: center;
+    text-align-last: top;
+
+}
+
+.group-text-data h3 {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 576px) {
+
+
+    .group-wallpaper img {
+        height: 300px;
+    }
+
+    .group-avatar {
+        display: block;
+        left: auto;
+    }
+
+    .group-text-data {
+        position: relative;
+        top: -200px;
+        left: 125px;
+        margin-bottom: -125px;
+    }
+}
+
+@media (min-width: 768px) {
+    .group-avatar {
+        left: 100px;
+    }
+}
+
+@media (min-width: 992px) {
+    .group-avatar {
+        left: 200px;
+    }
+}
+
+.group-intercommunion {
+    display: flex;
+    justify-content: center;
+}
+
+.group-intercommunion .subscribe-btn{
+    margin-right: 15px;
+}
+
+.group-intercommunion .write-message-btn{
+    margin-left: 15px;
+}
+
+.about-group {
+    display: flex;
+    justify-content: center;
+}
+
+.post-creator-part {
+    display: grid;
+    grid-template: 50% 50% / 75px 1fr;
+}
+
+.post-creator-part img {
+    grid-area: 1 / 1 / 3 / 1;
+    height: 75px;
+    width: 75px;
+    object-fit: cover;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.post-creator-part .post-creator {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 0px 0px 0px;
+    padding-left: 15px;
+}
+
+.post-creator-part .post-creation-time {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 0px 0px 0px;
+    grid-area: 2 / 2 / 2 / 2;
+    padding-left: 15px;
+}
+
+.post-files-part a {
+    display: block;
+}
+
+.post-image {
+    width: 100%;
+}
+
+.post-managment-part {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.group-post {
+    padding: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 25px;
+    border-color: #C4C0C0;
+}
+
+.likes-post-part {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.likes-post-part div {
+    padding-left: 20px;
+}
+
+.likes-post-part p {
+    margin-bottom: 0px;
+}
+
+.group-post form {
+    padding-left: 20px;
+}
+
+.group-post form button {
+    display: flex;
+    justify-content: center;
+}

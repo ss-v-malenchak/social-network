@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Gabriela&subset=cyrillic');
+
+:root {
+    font-family: 'Gabriela', serif;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 10px 0px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+p {
+    text-align: justify;
+}
+
+hr {
+    border-top: 1px dashed #8c8b8b;
+}
+
+header {
+    margin-bottom: 50px;
+}
+
+footer small {
+    display: flex;
+    justify-content: center;
+}
