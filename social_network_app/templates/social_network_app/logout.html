@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Logout
+{% endblock %}
+
+{% block cssfiles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'social_network_app/css/logout.css' %}" type="text/css">
+{% endblock %}
+
+{% block navigation %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index_url' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register_url' %}">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login_url' %}">Login</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="logout-background">
+    </div>
+    <div class="logout-content">
+        <h1>You are successfully logged out!</h1>
+        <div class="logout-btn">
+            <button class="btn btn-outline-dark my-2 my-sm-0"><a href="{% url 'index_url' %}">OK</a></button>
+        </div>
+    </div>
+{% endblock %}

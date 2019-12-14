@@ -1,0 +1,103 @@
+{% extends 'social_network_app/base_profile.html' %}
+
+{% block title %}
+    {{ group.name }}
+{% endblock %}
+
+{% block cssfiles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'social_network_app/css/group.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="group-main-information">
+        <div class="group-wallpaper">
+            <img src="{{ group.wallpaper.url }}" alt="Group wallpaper image">
+        </div>
+        <div class="group-avatar">
+            <img src="{{ group.avatar.url }}" alt="Group avatar image">
+        </div>
+        <div class="group-text-data">
+            <h1>{{ group.name }}</h1>
+            <div>
+                <h2>Admin: <a href="/user/{{ admin.id }}/">{{ admin.first_name }} {{ admin.last_name }}</a></h2>
+                <h3><a href="subscribers/">{{ subscribers }} subscribers</a></h3>
+                <div class="subscribe-btn">
+                    {% if subscription_status %}
+                        <button class="btn btn-outline-danger my-2 my-sm-0">Unsubcsribe</button>
+                    {% else %}
+                        <button class="btn btn-outline-success my-2 my-sm-0">Subcsribe</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="about-group">
+            <article>
+                <p>{{ group.activities }}</p>
+            </article>
+        </div>
+    </div>
+    <hr>
+    <div class="personal-diary">
+        <h1>{{ group.name }}'s diary</h1>
+        <div class="created-post">
+            {% if not posts %}
+                <br>
+                <h2>No posts :(</h2>
+            {% endif %}
+
+            {% if user.id == admin.id %}
+            <br>
+            <div class="group-intercommunion">
+                <div class="new-post-button">
+                    <form method="get" action="create-new-group-post/">
+                        <button class="btn btn-outline-dark my-2 my-sm-0 pl-3 pr-3" type="submit">Create new post</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+            {% endif %}
+
+            {% for post, images, files in posts %}
+            <div class="group-post">
+                <div class="post-creator-part">
+                    <img src="{{ group.avatar.url }}" alt="Post creator avatar">
+                    <h2 class="post-creator">{{ group.name }}</h2>
+                    <h3 class="post-creation-time">{{ post.title }} [{{ post.date_pub }}]</h3>
+                </div>
+                <br>
+                <div class="post-text-part">
+                    <article>
+                        <p>
+                            {{ post.text_content }}
+                        </p>
+                    </article>
+                </div>
+                <div class="group-files-part">
+                    {% for image in images %}
+                    <img src="/media/{{ image.file }}" alt="Post image" class="post-image">
+                    <hr>
+                    {% endfor %}
+
+                    {% for file in files %}
+                    <a href="/media/{{ file.file }}/">
+                        <img src="{% static 'social_network_app/img/file.png' %}" alt="File icon" class="file-icon">
+                        {{ file.file }}
+                    </a>
+                    {% endfor %}
+                </div>
+                <div class="post-managment-part">
+                    <i class="far fa-edit"></i>
+                    <i class="far fa-trash-alt"></i>
+                    <div class="likes-post-part">
+                        <h3></h3>
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

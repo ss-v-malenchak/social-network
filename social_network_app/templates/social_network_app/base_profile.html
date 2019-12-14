@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block cssfiles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'social_network_app/css/base.css' %}" type="text/css">
+{% endblock %}
+
+{% block navigation %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'current_user_profile_url' %}">My profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_news_url' %}">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_dialogs_url' %}">Messages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'group_list_url' %}">Groups</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'change_user_data_url' %}">Change user data</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'change_profile_data_url' %}">Change profile data</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'change_password_url' %}">Change password</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/find-user/">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="Search" name="q" placeholder="Search" aria-label="Search">
+            <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout_url' %}">Log out</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

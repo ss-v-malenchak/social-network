@@ -1,0 +1,46 @@
+{% extends 'social_network_app/base_profile.html' %}
+
+{% block title %}
+    Groups
+{% endblock %}
+
+{% block cssfiles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'social_network_app/css/groups-list.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <h1>Groups</h1>
+        {% if not create_group %}
+            <div class="text-center">
+                <br>
+                <form method="get" action="{% url 'create_new_group_url' %}">
+                    <button type="submit" class="btn btn-outline-dark">Create new group</button>
+                </form>
+                <hr>
+            </div>
+        {% endif %}
+        {% if not groups %}
+            <p class="text-center">No groups</p>
+        {% endif %}
+
+        <div class="row">
+            {% for group, subscribers_count in groups %}
+            <div class="row">
+                <img src="{{ group.avatar.url }}" alt="Group avatar">
+                <div class="group-info">
+                    <a href="/group/{{ group.id }}">
+                        <h1 class="group-name">{{ group.name }}</h1>
+                    </a>
+                    {% if subscribers_count %}
+                        <h2 class="subscriber-count">{{ subscribers_count }} subscribers</h2>
+                    {% else %}
+                        <h2 class="subscriber-count">0 subscribers</h2>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+{% endblock %}
+

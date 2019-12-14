@@ -1,0 +1,22 @@
+@import url('base.css');
+
+img {
+    width: 350px;
+}
+
+.tech-works-header {
+    font-size: 40px;
+    color: #00FF7F;
+}
+
+.tech-works-text {
+    font-size: 25px;
+}
+
+.tech-works-info {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    aling-items: center;
+    flex-direction: column;
+}

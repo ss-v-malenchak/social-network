@@ -1,0 +1,154 @@
+{% extends 'social_network_app/base_profile.html' %}
+
+{% block title %}
+    {{ user.first_name }} {{ user.last_name }}
+{% endblock %}
+
+{% block cssfiles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'social_network_app/css/profile.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="user-main-information">
+        <div class="user-wallpaper">
+            <img src="{{ profile.wallpaper.url }}" alt="User wallpaper image">
+        </div>
+        <div class="user-avatar">
+            <img src="{{ profile.avatar.url }}" alt="User avatar image">
+        </div>
+        <div class="user-text-data">
+            <h1>{{ user.first_name }} {{ user.last_name }}
+                {% if online_status %}
+                    <span class="badge badge-secondary badge-success">Online</span>
+                {% else %}
+                    <span class="badge badge-secondary badge-danger">Offline</span>
+                {% endif %}
+            </h1>
+            <div>
+                <h2>Nickname: {{ profile.nickname }}</h2>
+                <h2>Server: {{ server }}</h2>
+                <h2>Race: {{ race }}</h2>
+                <h2>Alliance: {{ profile.game_alliance }} </h2>
+                <h2>Guild: {{ profile.game_guild }}</h2>
+                <h2>Class: {{ profile.game_class }}</h2>
+                {% if profile.character_equip_calculator %}
+                    <h2><a href="{{ profile.character_equip_calculator }}">My equipment</a></h2>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="about-user">
+        <article>
+            <p>
+                {{ profile.about_user }}
+            </p>
+        </article>
+    </div>
+
+    {% if current_user.id %}
+        {% if current_user.id != user.id %}
+            <br>
+            <div class="user-intercommunion">
+                <div class="subscribe-btn">
+                    {% if subscription_status %}
+                        <button class="btn btn-outline-danger my-2 my-sm-0">Unsubcsribe</button>
+                    {% else %}
+                        <button class="btn btn-outline-success my-2 my-sm-0">Subcsribe</button>
+                    {% endif %}
+                </div>
+                <div class="write-message-btn">
+                    <form method="get" action="/dialogs/{{ user.username }}">
+                        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Write message</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        <hr>
+        <div class="account-data">
+            <div class="user-subscribers">
+                <a href="subscribers/">
+                    <h2>{{ subscribers }}</h2>
+                    <h3>subscribers</h3>
+                </a>
+            </div>
+            <div class="user-subscription">
+                <a href="subscription/">
+                    <h2>{{ subscriptions }}</h2>
+                    <h3>subscription</h3>
+                </a>
+            </div>
+            <div class="user-groups">
+                <a href="groups/">
+                    <h2>{{ groups }}</h2>
+                    <h3>groups</h3>
+                </a>
+            </div>
+        </div>
+        <hr>
+
+         <div class="personal-diary">
+                    <h1>{{ user.first_name }}'s diary</h1>
+                    <div class="created-post">
+                        {% if not posts %}
+                            <br>
+                            <h2>No posts :(</h2>
+                        {% endif %}
+
+                        {% if current_user.id == user.id %}
+                        <br>
+                        <div class="user-intercommunion">
+                            <div class="new-post-button">
+                                <form method="get" action="{% url 'create_new_user_post_url' %}">
+                                    <button class="btn btn-outline-dark my-2 my-sm-0 pl-3 pr-3" type="submit">Create new post</button>
+                                </form>
+                            </div>
+                        </div>
+                        <br>
+                        {% endif %}
+
+                        {% for post, images, files in posts %}
+                        <div class="user-post">
+                            <div class="post-creator-part">
+                                <img src="{{ profile.avatar.url }}" alt="Post creator avatar">
+                                <h2 class="post-creator">{{ user.first_name }} {{ user.last_name }}</h2>
+                                <h3 class="post-creation-time">{{ post.title }} [{{ post.date_pub }}]</h3>
+                            </div>
+                            <br>
+                            <div class="post-text-part">
+                                <article>
+                                    <p>
+                                        {{ post.text_content }}
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="post-files-part">
+                                {% for image in images %}
+                                    <img src="/media/{{ image.file }}" alt="Post image" class="post-image">
+                                    <hr>
+                                {% endfor %}
+
+                                {% for file in files %}
+                                    <a href="/media/{{ file.file }}/">
+                                        <img src="{% static 'social_network_app/img/file.png' %}" alt="File icon" class="file-icon">
+                                        {{ file.file }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                            <div class="post-managment-part">
+                                <i class="far fa-edit"></i>
+                                <i class="far fa-trash-alt"></i>
+                                <div class="likes-post-part">
+                                    <h3></h3>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        {% endfor %}
+                    </div>
+            </div>
+
+    {% endif %}
+{% endblock %}

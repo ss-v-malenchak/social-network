@@ -1,0 +1,26 @@
+@import url('base.css');
+
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.row {
+    margin: 30px 0px;
+}
+
+.dialog-info {
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.dialog-opponent {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.opponent-nickname {
+    text-align: left;
+}

@@ -1,0 +1,26 @@
+@import url('base.css');
+
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.row {
+    margin: 30px 0px;
+}
+
+.group-info {
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.group-name {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.subscriber-count {
+    text-align: left;
+}

@@ -1,0 +1,31 @@
+{% extends 'social_network_app/base_profile.html' %}
+
+{% block title %}
+    Dialogs
+{% endblock %}
+
+{% block cssfiles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'social_network_app/css/dialogs-list.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <h1>Dialogs</h1>
+    {% if not opponents %}
+        <p class="text-center">No dialogs</p>
+    {% endif %}
+    <div class="dialogs-list">
+    {% for profile, user in opponents %}
+        <div class="row">
+            <img src="{{ profile.avatar.url }}" alt="User avatar">
+                <div class="dialog-info">
+                    <a href="{{ user.username }}">
+                        <h1 class="dialog-opponent">{{ user.first_name }} {{ user.last_name }}</h1>
+                    </a>
+                    <h2 class="opponent-nickname">{{ profile.nickname }}</h2>
+                </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

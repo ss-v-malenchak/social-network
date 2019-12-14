@@ -1,0 +1,28 @@
+{% extends 'social_network_app/base_profile.html' %}
+
+{% block title %}
+    News
+{% endblock %}
+
+{% block cssfiles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'social_network_app/css/news.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <h1>News</h1>
+    <div>
+        <div class="row">
+            <div class="col-6">
+                <div class="tech-works-info">
+                    <h1 class="tech-works-header">SORRY!</h1>
+                    <h2 class="tech-works-text">We make our site way much better</h2>
+                </div>
+            </div>
+            <div class="col-6">
+                <img src="{% static 'social_network_app/img/tech_works.jpg' %}" alt="Technical works">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
