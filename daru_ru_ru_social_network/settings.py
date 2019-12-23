@@ -108,10 +108,10 @@ DATABASES = {
 }
 
 DATABASES['default']['HOST'] = '/cloudsql/cloud-rgr-262011:europe-west6:cloud-rgr-db'
-if os.getenv('GAE_INSTANCE'):
-    pass
-else:
-    DATABASES['default']['HOST'] = '127.0.0.1'
+# if os.getenv('GAE_INSTANCE'):
+#     pass
+# else:
+#     DATABASES['default']['HOST'] = '127.0.0.1'
 
 
 # Password validation
