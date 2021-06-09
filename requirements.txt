@@ -1,5 +1,5 @@
 asgiref==3.2.3
-Django==2.2.5
+Django==2.2.22
 django-braces==1.13.0
 django-model-utils==4.0.0
 django-online-users==0.3
